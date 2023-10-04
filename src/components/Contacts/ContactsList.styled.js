@@ -12,3 +12,7 @@ export const ListItem = styled.li`
   margin-bottom: 10px;
   font-size: 26px;
 `;
+export const Text = styled.p`
+  color: red;
+  font-size: 26px;
+`;

@@ -32,6 +32,7 @@ const ContactSchema = Yup.object().shape({
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
+
   const contacts = useSelector(getContacts);
 
   const handleSubmit = (values, actions) => {
