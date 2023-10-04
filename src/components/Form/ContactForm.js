@@ -8,6 +8,8 @@ import {
   ErrMessage,
   Title,
 } from './ContactForm.styled';
+import { useDispatch, useSelector } from 'react-redux';
+import { addContacts, getContacts } from 'redux/contacts/slice';
 
 const ContactSchema = Yup.object().shape({
   name: Yup.string()
@@ -28,7 +30,23 @@ const ContactSchema = Yup.object().shape({
     .required('Required'),
 });
 
-export const ContactForm = ({ onAdd }) => {
+export const ContactForm = () => {
+  const dispatch = useDispatch();
+  const contacts = useSelector(getContacts);
+
+  const handleSubmit = (values, actions) => {
+    const dublicateContact = contacts.some(
+      contact => contact.name.toLowerCase() === values.name.toLowerCase()
+    );
+
+    if (dublicateContact) {
+      return alert(`${values.name} already in contact list!`);
+    }
+    dispatch(addContacts(values));
+
+    actions.resetForm();
+  };
+
   return (
     <Formik
       initialValues={{
@@ -36,10 +54,7 @@ export const ContactForm = ({ onAdd }) => {
         number: '',
       }}
       validationSchema={ContactSchema}
-      onSubmit={(values, actions) => {
-        onAdd(values);
-        actions.resetForm();
-      }}
+      onSubmit={handleSubmit}
     >
       {({ isSubmitting }) => (
         <>
