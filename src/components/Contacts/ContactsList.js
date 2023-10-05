@@ -1,6 +1,6 @@
 import { ListItem, Text, Title } from './ContactsList.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteContacts, getContacts } from 'redux/contacts/slice';
+import { deleteContacts, getContacts } from 'redux/contacts/sliceContacts';
 import { getFilter } from 'redux/filters/slice';
 
 export const ContactList = () => {

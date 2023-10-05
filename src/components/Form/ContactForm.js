@@ -9,7 +9,7 @@ import {
   Title,
 } from './ContactForm.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContacts, getContacts } from 'redux/contacts/slice';
+import { addContacts, getContacts } from 'redux/contacts/sliceContacts';
 
 const ContactSchema = Yup.object().shape({
   name: Yup.string()
